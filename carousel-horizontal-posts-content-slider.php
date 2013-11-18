@@ -1,9 +1,9 @@
 <?php /*
-Plugin Name: Carousel Horizontal Posts Content Slider
+Plugin Name: Carousel Horizontal Posts Content Slider (romain)
 Plugin URI: http://www.backraw.com/plugins/carousel-horizontal-posts-content-slider.zip
 Description: This is  horizontal posts content slider designed using carousel jquery library.
 Version: 1.0
-Author: Subhan Sanjaya
+Author: Subhan Sanjaya  (modifier par romain)
 Author URI: http://www.backraw.com
 License:  GPL2*/
 global $wpdb, $wp_version;
@@ -27,6 +27,11 @@ function Carousel_shortcode()
 	//Image slider
 	global $post;
 
+	//romain
+	$attributes = "";
+	$slider_gallery = '';
+	///
+
 	$slider_gallery.= '<div class="image_carousel">';
 	$slider_gallery.='<div id="foo1">';
 
@@ -42,12 +47,22 @@ function Carousel_shortcode()
 		$slider_gallery.= '<div id="foo_content">';
 
 		if($displayimage=="YES"){
-			$slider_gallery.= attachment_image_filter($post->ID, 'thumbnail', 'alt="' . $post->post_title . '"');
+			
+			
+			if (has_post_thumbnail( $post->ID ) ){
+				$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' ); 
+			}
+			//romain
+			//$featured_img = "<img width='115' height='115' src='". $image[0] . "' " . $attributes . " />";
+			$featured_img = "<img width='60' height='60' src='". $image[0] . "' " . $attributes . " />";
+			$slider_gallery.= '<a href="'.$post_link.'">'.$featured_img.'</a>';
 		}
-		$slider_gallery.= '<br/><h2>'.$post_title.'</h2><br/>';
-		$slider_gallery.= '<p><span class="foo_con">'.tchpcs_clean($post_content, $displaydesc).'</span></p>...';
+		//romain
+		//$slider_gallery.= '<br/><h2>'.$post_title.'</h2><br/>';
+		//$slider_gallery.= '<p><span class="foo_con">'.tchpcs_clean($post_content, $displaydesc).'</span></p>...';
 
-		$slider_gallery.= '<br/><span class="more"><a href="'.$post_link.'">read more</a></span>';
+		//$slider_gallery.= '<br/><span class="more"><a href="'.$post_link.'">read more</a></span>';
+		///
 		$slider_gallery.= '</div>';
 
 	}
@@ -58,6 +73,9 @@ function Carousel_shortcode()
 	$slider_gallery.='<a class="prev" id="foo1_prev" href="#"><span>prev</span></a>';
 	$slider_gallery.='<a class="next" id="foo1_next" href="#"><span>next</span></a>';
 	$slider_gallery.='</div>';
+	//romain
+	$slider_gallery.='</div>';
+	//
 
 
 	return $slider_gallery;
@@ -75,7 +93,9 @@ function Carousel_add_javascript_files()
 
 		wp_enqueue_script('jquery');
 
-		wp_register_script( 'tiny_js', plugins_url('/inc/jquery.carouFredSel-6.1.0.js',__FILE__ ));
+		//romain
+		//wp_register_script( 'tiny_js', plugins_url('/inc/jquery.carouFredSel-6.1.0.js',__FILE__ ));
+		wp_register_script( 'tiny_js', plugins_url('/inc/jquery.carouFredSel-6.2.1.js',__FILE__ ));
 		wp_enqueue_script('tiny_js');
 
 		wp_register_script( 'custom_js', plugins_url('/inc/custom.js',__FILE__ ));
@@ -101,7 +121,9 @@ function attachment_image_filter($postid=0, $size='thumbnail', $attributes='') {
 
 			//custermize css, foo_content size accordint to your image with and height, ex img width= 140 height=140, css file- foo_content{ width 160px }
 				
-			return "<img width='130' height='130' src='". $attachment[0] . "' " . $attributes . " />";
+			//romain
+			//return "<img width='130' height='130' src='". $attachment[0] . "' " . $attributes . " />";
+			return "<img width='115' height='115' src='". $attachment[0] . "' " . $attributes . " />";
 		}
 }
 

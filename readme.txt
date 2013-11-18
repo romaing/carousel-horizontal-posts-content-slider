@@ -31,9 +31,36 @@ This is JQuery Carousel library based wordpress horizontal posts content slider.
 
 **Method 1**	
 
-[Upload from website admin with ZIP file](http://www.backraw.com)	 	
+
+1.You can use the built-in installer. OR
+
+Download the zip file and extract the contents. Upload the 'Carousel hosrizontal posts content slider' folder to your plugins directory (wp-content/plugins/).
+
+
+
+2.Activate the plugin through the 'Plugins' menu in WordPress. 	
+
+
 
 **Configuration**
+
+
+
+In order to display, you have three options
+
+
+
+1. Simply place < ? p h p if(function_exists('TCHPCSCarousel')){ echo TCHPCSCarousel(); } ? > in your theme.
+
+
+
+2.Add the shortcode '[carousel-horizontal-posts-content-slider]'.
+
+
+
+3.Using widget.
+
+
 
 
 
