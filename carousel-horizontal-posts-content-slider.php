@@ -73,10 +73,6 @@ function Carousel_shortcode()
 	$slider_gallery.='<a class="prev" id="foo1_prev" href="#"><span>prev</span></a>';
 	$slider_gallery.='<a class="next" id="foo1_next" href="#"><span>next</span></a>';
 	$slider_gallery.='</div>';
-	//romain
-	$slider_gallery.='</div>';
-	//
-
 
 	return $slider_gallery;
 
